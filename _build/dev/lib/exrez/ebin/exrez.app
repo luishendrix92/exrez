@@ -1,0 +1,10 @@
+{application,exrez,
+             [{applications,[kernel,stdlib,elixir,logger,poison,timex,
+                             httpoison]},
+              {description,"Elixir package for the HiRez API which provides data about its games and lets you bypass all the session generation and url-building logic and gives you a coherent API for all its games' endpoints.\n"},
+              {modules,['Elixir.Exrez','Elixir.Exrez.Hirez',
+                        'Elixir.Exrez.Paladins','Elixir.Exrez.Realm',
+                        'Elixir.Exrez.Session','Elixir.Exrez.Smite']},
+              {registered,[]},
+              {vsn,"0.2.0"},
+              {extra_applications,[logger]}]}.
