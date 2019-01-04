@@ -1,5 +1,6 @@
 {application,earmark,
-             [{description,"Earmark is a pure-Elixir Markdown converter.\n\nIt is intended to be used as a library (just call Earmark.as_html),\nbut can also be used as a command-line tool (run mix escript.build\nfirst).\n\nOutput generation is pluggable.\n"},
+             [{applications,[kernel,stdlib,elixir]},
+              {description,"Earmark is a pure-Elixir Markdown converter.\n\nIt is intended to be used as a library (just call Earmark.as_html),\nbut can also be used as a command-line tool (run mix escript.build\nfirst).\n\nOutput generation is pluggable.\n"},
               {modules,['Elixir.Earmark','Elixir.Earmark.Block',
                         'Elixir.Earmark.Block.BlockQuote',
                         'Elixir.Earmark.Block.Code',
@@ -60,8 +61,7 @@
                         'Elixir.Earmark.Scanner.RulerThin',
                         'Elixir.Earmark.Scanner.Text',
                         'Elixir.Earmark.Scanner.UnderHeadline',
-                        'Elixir.Earmark.Types',link_text_lexer,
-                        link_text_parser,string_lexer]},
+                        'Elixir.Earmark.Types','Elixir.Tools.Tracer',
+                        link_text_lexer,link_text_parser,string_lexer]},
               {registered,[]},
-              {vsn,"1.2.5"},
-              {applications,[kernel,stdlib,elixir]}]}.
+              {vsn,"1.3.1"}]}.

@@ -6,5 +6,4 @@
                         'Elixir.Exrez.Paladins','Elixir.Exrez.Realm',
                         'Elixir.Exrez.Session','Elixir.Exrez.Smite']},
               {registered,[]},
-              {vsn,"0.2.0"},
-              {extra_applications,[logger]}]}.
+              {vsn,"0.2.1"}]}.

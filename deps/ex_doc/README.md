@@ -8,13 +8,26 @@ ExDoc is a tool to generate documentation for your Elixir projects. In case you 
 
 To learn about how to document your projects check out [Elixir's writing documentation page][hex-writing-docs].
 
+See the [ExDoc Documentation](https://hexdocs.pm/ex_doc/).
+
 ## Using ExDoc with Mix
 
-To use ExDoc in your Mix projects, first add ExDoc as a dependency:
+To use ExDoc in your Mix projects, first add ExDoc as a dependency.
+
+
+If you are using Elixir v1.7 and later:
 
 ```elixir
 def deps do
-  [{:ex_doc, "~> 0.16", only: :dev, runtime: false}]
+  [{:ex_doc, "~> 0.19", only: :dev, runtime: false}]
+end
+```
+
+If you are using Elixir v1.6 and earlier:
+
+```elixir
+def deps do
+  [{:ex_doc, "~> 0.18.0", only: :dev, runtime: false}]
 end
 ```
 
@@ -24,23 +37,25 @@ ExDoc will automatically pull in information from your projects, like the applic
 
 ```elixir
 def project do
-  [app: :my_app,
-   version: "0.1.0-dev",
-   deps: deps(),
+  [
+    app: :my_app,
+    version: "0.1.0-dev",
+    deps: deps(),
 
-   # Docs
-   name: "MyApp",
-   source_url: "https://github.com/USER/PROJECT",
-   homepage_url: "http://YOUR_PROJECT_HOMEPAGE",
-   docs: [main: "MyApp", # The main page in the docs
-          logo: "path/to/logo.png",
-          extras: ["README.md"]]]
+    # Docs
+    name: "MyApp",
+    source_url: "https://github.com/USER/PROJECT",
+    homepage_url: "http://YOUR_PROJECT_HOMEPAGE",
+    docs: [
+      main: "MyApp", # The main page in the docs
+      logo: "path/to/logo.png",
+      extras: ["README.md"]
+    ]
+  ]
 end
 ```
 
-Now you are ready to generate your project documentation with `mix docs`.
-
-To see all options available when generating docs, run `mix help docs`. You may have to run `mix docs` or `mix compile` first.
+Now you are ready to generate your project documentation with `mix docs`. To see all options available when generating docs, run `mix help docs`.
 
 ## Using ExDoc via command line
 
@@ -108,7 +123,15 @@ Update your project configuration to use Cmark:
 docs: [markdown_processor: ExDoc.Markdown.Cmark]
 ```
 
-# License
+## Contributing
+
+The easiest way to test changes to ExDoc is to locally re-generate it's own docs:
+
+  1. Run `mix setup` to install all dependencies
+  2. Run `mix build` to generate docs. This is a custom alias that will build assets, recompile ExDoc, and output fresh docs into the `doc/` directory
+  3. Commit both `assets/*` and `formatters/*` changes (after running `mix build`)
+
+## License
 
 ExDoc source code is released under Apache 2 License. The generated contents, however, are under different licenses based on projects used to help render HTML, including CSS, JS, and other assets.
 

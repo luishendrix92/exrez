@@ -21,15 +21,13 @@ defmodule ExDoc.CLI do
           o: :output,
           r: :source_root,
           u: :source_url,
-          v: :version,
+          v: :version
         ],
-
         switches: [
-          debug: :boolean,
           extra: :keep,
           language: :string,
           source_ref: :string,
-          version: :boolean,
+          version: :boolean
         ]
       )
 
@@ -41,18 +39,20 @@ defmodule ExDoc.CLI do
   end
 
   defp print_version do
-    IO.puts "ExDoc v#{ExDoc.version}"
+    IO.puts("ExDoc v#{ExDoc.version()}")
   end
 
   defp generate(args, opts, generator) do
     [project, version, source_beam] = parse_args(args)
 
     Code.prepend_path(source_beam)
+
     opts =
       opts
       |> Keyword.put(:source_beam, source_beam)
       |> extra_files_options()
       |> merge_config()
+
     generator.(project, version, opts)
   end
 
@@ -62,6 +62,7 @@ defmodule ExDoc.CLI do
         opts
         |> Keyword.delete(:config)
         |> Keyword.merge(read_config(config))
+
       _ ->
         opts
     end
@@ -80,7 +81,7 @@ defmodule ExDoc.CLI do
     {result, _} = Code.eval_string(config)
 
     unless is_list(result) do
-      raise "expected a keyword list from config file: #{inspect path}"
+      raise "expected a keyword list from config file: #{inspect(path)}"
     end
 
     result
@@ -89,19 +90,19 @@ defmodule ExDoc.CLI do
   defp parse_args([_project, _version, _source_beam] = args), do: args
 
   defp parse_args([_, _, _ | _]) do
-    IO.puts "Too many arguments.\n"
+    IO.puts("Too many arguments.\n")
     print_usage()
-    exit {:shutdown, 1}
+    exit({:shutdown, 1})
   end
 
   defp parse_args(_) do
-    IO.puts "Too few arguments.\n"
+    IO.puts("Too few arguments.\n")
     print_usage()
-    exit {:shutdown, 1}
+    exit({:shutdown, 1})
   end
 
   defp print_usage do
-    IO.puts ~S"""
+    IO.puts(~S"""
     Usage:
       ex_doc PROJECT VERSION BEAMS [OPTIONS]
 
@@ -117,7 +118,6 @@ defmodule ExDoc.CLI do
                           directory in the output path
       -n, --canonical     Indicate the preferred URL with rel="canonical" link element
       -c, --config        Give configuration through a file instead of command line
-          --debug         When given include debug files, source as source maps
       -e, --extra         Allow users to include additional Markdown files
                           May be given multiple times
       -s, --extra-section Allow user to define the title for the additional Markdown files,
@@ -158,6 +158,6 @@ defmodule ExDoc.CLI do
 
         https://github.com/elixir-lang/ecto/blob/v1.0/%{path}#L%{line}
 
-    """
+    """)
   end
 end

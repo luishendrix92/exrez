@@ -1,7 +1,7 @@
 use Mix.Config
 
-# Configure on your app using:
+# This is reserved for me, the ExRez developer!
 # ----------------------------------------------
 # config :exrez,
-#   dev_id: "XXXX",
-#   auth_key: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+#   dev_id: "2434",
+#   auth_key: "3BB8A39C64824E8ABCC5B4FEBDA968E6"

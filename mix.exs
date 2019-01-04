@@ -4,7 +4,7 @@ defmodule Exrez.MixProject do
   def project do
     [
       app: :exrez,
-      version: "0.2.0",
+      version: "0.2.1",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
       description: description(),
@@ -24,7 +24,7 @@ defmodule Exrez.MixProject do
       {:timex, "~> 3.1"},
       {:httpoison, "~> 1.0"},
       {:poison, "~> 3.1"},
-      {:ex_doc, "~> 0.18.0", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.19.0", only: :dev, runtime: false}
     ]
   end
 

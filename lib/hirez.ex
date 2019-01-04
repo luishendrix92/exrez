@@ -86,8 +86,25 @@ defmodule Exrez.Hirez do
     api_call(platform, "getplayeridinfoforxboxandswitch", "/#{player_name}")
   end
 
+  def player(platform, player, portal_id) do
+    case api_call(platform, "getplayer", "/#{player}/#{portal_id}") do
+      {:ok, [player_info]} -> {:ok, player_info}
+      result -> result
+    end
+  end
   def player(platform, player) do
-    api_call(platform, "getplayer", "/#{player}")
+    case api_call(platform, "getplayer", "/#{player}") do
+      {:ok, [player_info]} -> {:ok, player_info}
+      result -> result
+    end
+  end
+  
+  def player_id_by_portal_user_id(platform, portal_id, portal_user_id) do
+    api_call(platform, "getplayeridbyportaluserid", "/#{portal_id}/#{portal_user_id}")
+  end
+  
+  def player_ids_by_gamertag(platform, portal_id, gamer_tag) do
+    api_call(platform, "getplayeridsbygamertag", "/#{portal_id}/#{gamer_tag}")
   end
 
   def player_loadouts(platform, player, language \\ 1) do
@@ -106,7 +123,10 @@ defmodule Exrez.Hirez do
   end
 
   def team_details(platform, clan_id) do
-    api_call(platform, "getteamdetails", "/#{clan_id}")
+    case api_call(platform, "getteamdetails", "/#{clan_id}") do
+      {:ok, [details]} -> {:ok, details}
+      result -> result
+    end
   end
 
   def team_players(platform, clan_id) do
